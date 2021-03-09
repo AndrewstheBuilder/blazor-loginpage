@@ -1,5 +1,6 @@
 using BlazorApp.Models;
 using BlazorApp.Models.Account;
+using BlazorApp.Helpers;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -39,9 +40,12 @@ namespace BlazorApp.Services
 
         public async Task Initialize()
         {
-            //await Seed();
+            var usersKey = "blazor-registration-login-example-users";
+            var users = await _localStorageService.GetItem<List<UserRecord>>(usersKey) ?? null;
+            if( users == null) {
+                await Seed();
+            }
             User = await _localStorageService.GetItem<User>(_userKey);
-            System.Console.WriteLine(User);
         }
 
         public async Task Login(Login model)
