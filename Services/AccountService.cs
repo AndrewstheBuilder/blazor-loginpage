@@ -3,6 +3,7 @@ using BlazorApp.Models.Account;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace BlazorApp.Services
 {
@@ -15,8 +16,6 @@ namespace BlazorApp.Services
         Task Register(AddUser model);
         Task<IList<User>> GetAll();
         Task<User> GetById(string id);
-        Task Update(string id, EditUser model);
-        Task Delete(string id);
     }
 
     public class AccountService : IAccountService
@@ -40,13 +39,25 @@ namespace BlazorApp.Services
 
         public async Task Initialize()
         {
+            //await Seed();
             User = await _localStorageService.GetItem<User>(_userKey);
+            System.Console.WriteLine(User);
         }
 
         public async Task Login(Login model)
         {
             User = await _httpService.Post<User>("/users/authenticate", model);
             await _localStorageService.SetItem(_userKey, User);
+        }
+
+        //Seed local Storage with accounts
+        public async Task Seed(){
+            Models.Account.AddUser me = new Models.Account.AddUser();
+            me.FirstName = "Andrew";
+            me.LastName = "Test";
+            me.Username = "ap";
+            me.Password = "sixsix";
+            await Register(me);
         }
 
         public async Task Logout()
@@ -69,30 +80,6 @@ namespace BlazorApp.Services
         public async Task<User> GetById(string id)
         {
             return await _httpService.Get<User>($"/users/{id}");
-        }
-
-        public async Task Update(string id, EditUser model)
-        {
-            await _httpService.Put($"/users/{id}", model);
-
-            // update stored user if the logged in user updated their own record
-            if (id == User.Id) 
-            {
-                // update local storage
-                User.FirstName = model.FirstName;
-                User.LastName = model.LastName;
-                User.Username = model.Username;
-                await _localStorageService.SetItem(_userKey, User);
-            }
-        }
-
-        public async Task Delete(string id)
-        {
-            await _httpService.Delete($"/users/{id}");
-
-            // auto logout if the logged in user deleted their own record
-            if (id == User.Id)
-                await Logout();
         }
     }
 }
