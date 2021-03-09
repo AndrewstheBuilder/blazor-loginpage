@@ -50,10 +50,7 @@ namespace BlazorApp.Helpers
             async Task<HttpResponseMessage> authenticate()
             {
                 var bodyJson = await request.Content.ReadAsStringAsync();
-                Login me = new Login();
-                me.Username = "ap";
-                me.Password = "sixsix";
-                var body = me;//JsonSerializer.Deserialize<Login>(bodyJson);
+                var body = JsonSerializer.Deserialize<Login>(bodyJson);
                 var user = users.FirstOrDefault(x => x.Username == body.Username && x.Password == body.Password);
 
                 if (user == null)
