@@ -57,10 +57,10 @@ namespace BlazorApp.Services
         //Seed local Storage with accounts
         public async Task Seed(){
             Models.Account.AddUser me = new Models.Account.AddUser();
-            me.FirstName = "Andrew";
+            me.FirstName = "Admin";
             me.LastName = "Test";
-            me.Username = "ap";
-            me.Password = "sixsix";
+            me.Username = "admin";
+            me.Password = "Password123";
             await Register(me);
         }
 
