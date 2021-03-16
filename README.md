@@ -1,5 +1,8 @@
-# blazor-webassembly-registration-login-example
-
-ASP.NET Core Blazor WebAssembly - User Registration and Login Example & Tutorial
-
-Documentation and demo available at https://jasonwatmore.com/post/2020/11/09/blazor-webassembly-user-registration-and-login-example-tutorial
+# blazor-webassembly-loginpage
+### Most code and inspiration from: https://jasonwatmore.com/post/2020/11/09/blazor-webassembly-user-registration-and-login-example-tutorial
+# Login Creds:
+* ``username``:``andrews``
+* ``password``:``Password123``
+* ``username``:``admin``
+* ``password``:``password``
+* _both credentials have the same accessibility and permissions_
