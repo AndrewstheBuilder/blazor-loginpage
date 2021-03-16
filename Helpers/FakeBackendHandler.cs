@@ -41,6 +41,10 @@ namespace BlazorApp.Helpers
                     return await getUsers();
                 if (Regex.Match(path, @"\/users\/\d+$").Success && method == HttpMethod.Get)
                     return await getUserById();
+                if (Regex.Match(path, @"\/users\/\d+$").Success && method == HttpMethod.Put)
+                    return await updateUser();
+                if (Regex.Match(path, @"\/users\/\d+$").Success && method == HttpMethod.Delete)
+                    return await deleteUser();
                 // pass through any requests not handled above
                 return await base.SendAsync(request, cancellationToken);
             }

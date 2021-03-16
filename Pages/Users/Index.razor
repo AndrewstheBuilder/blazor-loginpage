@@ -22,6 +22,19 @@
                     <td>@user.FirstName</td>
                     <td>@user.LastName</td>
                     <td>@user.Username</td>
+                    <td style="white-space: nowrap">
+                            <NavLink href="@($"users/edit/{user.Id}")" class="btn btn-sm btn-primary mr-1">Edit</NavLink>
+                                <button @onclick="@(() => DeleteUser(user.Id))" disabled="@user.IsDeleting" class="btn btn-sm btn-danger btn-delete-user">
+                                @if (user.IsDeleting)
+                                {
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                }
+                                else
+                                {
+                                    <span>Delete</span>
+                                }
+                                </button>
+                    </td>
                 </tr>
             }
         }
