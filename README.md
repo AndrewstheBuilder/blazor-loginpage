@@ -13,8 +13,8 @@
 ![image](https://user-images.githubusercontent.com/51387040/111344571-ddb50380-8652-11eb-98b7-63104fea2e6b.png)
 
 # Login Creds:
-* Username:``andrews``
-* Password:``Password123``
-* Username:``admin``
-* Password:``Password123``
+1. Username:``andrews``
+   Password:``Password123``
+2. Username:``admin``
+   Password:``Password123``
 * _both credentials have the same accessibility and permissions_
