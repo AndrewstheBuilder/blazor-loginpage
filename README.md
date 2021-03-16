@@ -1,7 +1,7 @@
 # blazor-webassembly-loginpage
 - Its live here: https://loginpage-blazorwebassembly.netlify.app/
 - Reference: https://jasonwatmore.com/post/2020/11/09/blazor-webassembly-user-registration-and-login-example-tutorial
-- I changed the layout and color scheme, removed registration option from the login page, and seeded my own credentials which can be found below.
+- I changed the layout and color scheme, removed registration option from the login page, and seeded my own credentials for the login page which can be found below.
 
 
 # How to run:
