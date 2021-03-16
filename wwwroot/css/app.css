@@ -1,8 +1,21 @@
-﻿a { cursor: pointer }
+﻿body{
+    /*background-image: url("sunset.jpg");*/
+    background-color:rgb(20, 1, 39);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
+a { cursor: pointer }
 
 .app-container {
-    min-height: 320px;
     overflow: hidden;
+    /*height: 100vh;*/
+}
+
+tr {
+    color: white;
 }
 
 .btn-delete-user {
@@ -30,7 +43,7 @@
     top: 0.5rem;
 }
 
-/* 
+/*
     below styles were copied from bootstrap 4.5.0 and renamed to be compatible with blazor
     - '.validation-message' == bootstrap '.invalid-feedback'
     - '.invalid' == bootstrap '.is-invalid'

@@ -3,7 +3,7 @@
 @inject IAlertService AlertService
 @inject NavigationManager NavigationManager
 
-<div class="card">
+<div class="card text-light" style="background-color: rgb(62, 48, 84);">
     <h4 class="card-header">Register</h4>
     <div class="card-body">
         <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
@@ -29,7 +29,7 @@
                 <ValidationMessage For="@(() => model.Password)" />
             </div>
             <button disabled="@loading" class="btn btn-primary">
-                @if (loading) 
+                @if (loading)
                 {
                     <span class="spinner-border spinner-border-sm mr-1"></span>
                 }
@@ -48,7 +48,7 @@
     {
         // reset alerts on submit
         AlertService.Clear();
-        
+
         loading = true;
         try
         {

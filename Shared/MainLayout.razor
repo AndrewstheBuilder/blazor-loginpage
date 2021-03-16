@@ -14,13 +14,13 @@
     </nav>
 }
 
-<div class="app-container @(LoggedIn ? "bg-light" : "")">
+<div class="app-container @(LoggedIn ? "" : "")">
     <Alert />
     @Body
 </div>
 
 @code {
-    public bool LoggedIn 
+    public bool LoggedIn
     {
         get { return AccountService.User != null; }
     }

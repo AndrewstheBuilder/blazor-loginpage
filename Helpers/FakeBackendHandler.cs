@@ -27,7 +27,7 @@ namespace BlazorApp.Helpers
             var usersKey = "blazor-registration-login-example-users";
             var users = await _localStorageService.GetItem<List<UserRecord>>(usersKey) ?? new List<UserRecord>();
             var method = request.Method;
-            var path = request.RequestUri.AbsolutePath;            
+            var path = request.RequestUri.AbsolutePath;
 
             return await handleRoute();
 
@@ -45,13 +45,12 @@ namespace BlazorApp.Helpers
                     return await updateUser();
                 if (Regex.Match(path, @"\/users\/\d+$").Success && method == HttpMethod.Delete)
                     return await deleteUser();
-                
                 // pass through any requests not handled above
                 return await base.SendAsync(request, cancellationToken);
             }
 
             // route functions
-            
+
             async Task<HttpResponseMessage> authenticate()
             {
                 var bodyJson = await request.Content.ReadAsStringAsync();
@@ -89,7 +88,7 @@ namespace BlazorApp.Helpers
                 users.Add(user);
 
                 await _localStorageService.SetItem(usersKey, users);
-                
+
                 return await ok();
             }
 
@@ -107,7 +106,7 @@ namespace BlazorApp.Helpers
                 return await ok(basicDetails(user));
             }
 
-            async Task<HttpResponseMessage> updateUser() 
+            async Task<HttpResponseMessage> updateUser()
             {
                 if (!isLoggedIn()) return await unauthorized();
 
@@ -166,7 +165,7 @@ namespace BlazorApp.Helpers
                     StatusCode = statusCode,
                     Content = new StringContent(JsonSerializer.Serialize(content), Encoding.UTF8, "application/json")
                 };
-                
+
                 // delay to simulate real api call
                 await Task.Delay(500);
 
@@ -176,7 +175,7 @@ namespace BlazorApp.Helpers
             bool isLoggedIn()
             {
                 return request.Headers.Authorization?.Parameter == "fake-jwt-token";
-            } 
+            }
 
             int idFromPath()
             {

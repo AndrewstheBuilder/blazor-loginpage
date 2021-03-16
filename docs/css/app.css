@@ -1,8 +1,13 @@
 ﻿a { cursor: pointer }
 
+
+body, html {
+    height: 100%;
+}
+
 .app-container {
-    min-height: 320px;
     overflow: hidden;
+    height: 100vh;
 }
 
 .btn-delete-user {
@@ -30,7 +35,7 @@
     top: 0.5rem;
 }
 
-/* 
+/*
     below styles were copied from bootstrap 4.5.0 and renamed to be compatible with blazor
     - '.validation-message' == bootstrap '.invalid-feedback'
     - '.invalid' == bootstrap '.is-invalid'
