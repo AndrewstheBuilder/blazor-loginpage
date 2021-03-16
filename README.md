@@ -4,5 +4,5 @@
 * ``username``:``andrews``
 * ``password``:``Password123``
 * ``username``:``admin``
-* ``password``:``password``
+* ``password``:``Password123``
 * _both credentials have the same accessibility and permissions_
