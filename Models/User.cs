@@ -7,5 +7,6 @@ namespace BlazorApp.Models
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Token { get; set; }
+        public bool IsDeleting { get; set; }
     }
 }

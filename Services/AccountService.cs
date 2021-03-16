@@ -14,6 +14,8 @@ namespace BlazorApp.Services
         Task Initialize();
         Task Login(Login model);
         Task Logout();
+        Task Update(string id, EditUser model);
+        Task Delete(string id);
         Task Register(AddUser model);
         Task<IList<User>> GetAll();
         Task<User> GetById(string id);
@@ -56,12 +58,42 @@ namespace BlazorApp.Services
 
         //Seed local Storage with accounts
         public async Task Seed(){
+            Models.Account.AddUser admin = new Models.Account.AddUser();
+            admin.FirstName = "Admin";
+            admin.LastName = "Test";
+            admin.Username = "admin";
+            admin.Password = "Password123";
+            await Register(admin);
             Models.Account.AddUser me = new Models.Account.AddUser();
-            me.FirstName = "Admin";
-            me.LastName = "Test";
-            me.Username = "admin";
+            me.FirstName = "Andrews";
+            me.LastName = "P";
+            me.Username = "andrews";
             me.Password = "Password123";
             await Register(me);
+        }
+
+        public async Task Update(string id, EditUser model)
+        {
+            await _httpService.Put($"/users/{id}", model);
+
+            // update stored user if the logged in user updated their own record
+            if (id == User.Id)
+            {
+                // update local storage
+                User.FirstName = model.FirstName;
+                User.LastName = model.LastName;
+                User.Username = model.Username;
+                await _localStorageService.SetItem(_userKey, User);
+            }
+        }
+
+        public async Task Delete(string id)
+        {
+            await _httpService.Delete($"/users/{id}");
+
+            // auto logout if the logged in user deleted their own record
+            if (id == User.Id)
+                await Logout();
         }
 
         public async Task Logout()
